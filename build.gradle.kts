@@ -2,7 +2,7 @@ plugins {
   kotlin("jvm")
   kotlin("kapt")
   kotlin("plugin.serialization")
-  id("com.github.johnrengelman.shadow")
+  `maven-publish`
 }
 
 val kotlinVersion: String by project
@@ -15,7 +15,7 @@ repositories {
   mavenLocal()
   mavenCentral()
 
-  maven("https://repo.velocitypowered.com/snapshots/")
+  maven("https://nexus.velocitypowered.com/repository/maven-public/")
 }
 
 dependencies {
@@ -29,6 +29,20 @@ dependencies {
   kapt("com.velocitypowered:velocity-api:$velocityVersion")
 }
 
-tasks.build {
-  dependsOn(tasks.shadowJar.get())
+tasks.withType<Jar> {
+  duplicatesStrategy = DuplicatesStrategy.WARN
+  from(configurations.runtimeClasspath.get().map { if (it.isDirectory) it else zipTree(it) })
+}
+
+publishing {
+  publications {
+    create<MavenPublication>("maven") {
+      groupId = "com.github.PureOrigins"
+      artifactId = project.name
+      version = "$velocityVersion+$kotlinVersion"
+      
+      artifact(tasks["jar"])
+      artifact(tasks["kotlinSourcesJar"])
+    }
+  }
 }
