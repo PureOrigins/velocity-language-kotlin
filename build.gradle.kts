@@ -19,11 +19,11 @@ repositories {
 }
 
 dependencies {
-  implementation(kotlin("reflect"))
-  implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.2.1")
-  implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:$kotlinVersion")
-  implementation("org.jetbrains.kotlinx:kotlinx-coroutines-jdk8:$kotlinVersion")
-  implementation("net.kyori:adventure-extra-kotlin:4.7.0")
+  api(kotlin("reflect"))
+  api("org.jetbrains.kotlinx:kotlinx-serialization-json:1.2.1")
+  api("org.jetbrains.kotlinx:kotlinx-coroutines-core:$kotlinVersion")
+  api("org.jetbrains.kotlinx:kotlinx-coroutines-jdk8:$kotlinVersion")
+  api("net.kyori:adventure-extra-kotlin:4.7.0")
 
   compileOnly("com.velocitypowered:velocity-api:$velocityVersion")
   kapt("com.velocitypowered:velocity-api:$velocityVersion")
