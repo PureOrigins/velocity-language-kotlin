@@ -29,9 +29,17 @@ dependencies {
   kapt("com.velocitypowered:velocity-api:$velocityVersion")
 }
 
-tasks.withType<Jar> {
-  duplicatesStrategy = DuplicatesStrategy.WARN
-  from(configurations.runtimeClasspath.get().map { if (it.isDirectory) it else zipTree(it) })
+tasks {
+  register<Jar>("fatJar") {
+    duplicatesStrategy = DuplicatesStrategy.WARN
+    archiveClassifier.set("fat")
+    from(configurations.compileClasspath.get().map { if (it.isDirectory) it else zipTree(it) })
+    from(sourceSets.main.get().output)
+  }
+  
+  build {
+    dependsOn("fatJar")
+  }
 }
 
 publishing {
@@ -46,3 +54,4 @@ publishing {
     }
   }
 }
+
