@@ -33,7 +33,7 @@ tasks {
   register<Jar>("fatJar") {
     duplicatesStrategy = DuplicatesStrategy.WARN
     archiveClassifier.set("fat")
-    from(configurations.compileClasspath.get().map { if (it.isDirectory) it else zipTree(it) })
+    from(configurations.runtimeClasspath.get().map { if (it.isDirectory) it else zipTree(it) })
     from(sourceSets.main.get().output)
   }
   
