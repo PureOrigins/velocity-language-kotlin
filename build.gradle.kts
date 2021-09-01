@@ -49,7 +49,7 @@ publishing {
       artifactId = project.name
       version = "$velocityVersion+$kotlinVersion"
       
-      artifact(tasks["jar"])
+      from(components["kotlin"])
       artifact(tasks["kotlinSourcesJar"])
     }
   }
