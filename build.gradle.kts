@@ -24,6 +24,11 @@ dependencies {
   api("org.jetbrains.kotlinx:kotlinx-coroutines-core:$kotlinVersion")
   api("org.jetbrains.kotlinx:kotlinx-coroutines-jdk8:$kotlinVersion")
   api("net.kyori:adventure-extra-kotlin:4.7.0")
+  api("org.jetbrains.exposed:exposed-core:0.34.1")
+  api("org.jetbrains.exposed:exposed-jdbc:0.34.1")
+  api("org.postgresql:postgresql:42.2.16")
+  api("org.xerial:sqlite-jdbc:3.34.0")
+  api("mysql:mysql-connector-java:8.0.25")
 
   compileOnly("com.velocitypowered:velocity-api:$velocityVersion")
   kapt("com.velocitypowered:velocity-api:$velocityVersion")
